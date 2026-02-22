@@ -1,14 +1,18 @@
 /* ===== 울산상사 USCOMPANY - 리폼 랜딩 ===== */
-/* 메인: 딥 네이비 #001f3f / 포인트: 오렌지 */
+/* 모던 딥 네이비 + 포인트 오렌지 */
 
 :root {
-  --navy: #001f3f;
-  --navy-light: #003366;
-  --orange: #ff6b35;
-  --orange-light: #ff8c5a;
-  --orange-dark: #e55a2b;
-  --white: #f8f9fa;
-  --gray: #6c757d;
+  --navy: #0a1628;
+  --navy-mid: #132f4c;
+  --navy-light: #1a3a5c;
+  --navy-bg: #0d2137;
+  --orange: #ff7b54;
+  --orange-light: #ff9a76;
+  --orange-glow: rgba(255, 123, 84, 0.35);
+  --white: #ffffff;
+  --text: #e8edf4;
+  --text-muted: #94a3b8;
+  --gray: #64748b;
 }
 
 *,
@@ -24,16 +28,43 @@ html {
 body {
   margin: 0;
   font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: var(--navy);
-  color: var(--white);
+  background: linear-gradient(165deg, var(--navy-bg) 0%, var(--navy) 50%, var(--navy-mid) 100%);
+  background-attachment: fixed;
+  color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
+}
+
+/* ----- Hero 고정 영역 (겹침 방지) ----- */
+.hero-static {
+  padding: 3rem 1.5rem 2rem;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.hero-static .main-title {
+  margin: 0 0 1rem;
+  font-size: clamp(1.85rem, 5.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+}
+
+.hero-static .hero-desc {
+  margin: 0;
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  color: var(--text);
+  line-height: 1.7;
+  opacity: 0.95;
 }
 
 /* ----- Physics zone (낙하 영역) ----- */
 .physics-zone {
   position: relative;
-  min-height: 100vh;
+  min-height: 75vh;
   width: 100%;
   overflow: hidden;
 }
@@ -60,14 +91,15 @@ body {
   color: var(--navy);
   text-decoration: none;
   font-weight: 700;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
-  box-shadow: 0 4px 14px rgba(255, 107, 53, 0.4);
+  box-shadow: 0 4px 20px var(--orange-glow);
   z-index: 10;
 }
 
 .menu-btn:hover {
   background: var(--orange-light);
+  box-shadow: 0 6px 28px var(--orange-glow);
 }
 
 /* ----- 네비 오버레이 ----- */
@@ -87,7 +119,7 @@ body {
 .nav-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 31, 63, 0.95);
+  background: rgba(10, 22, 40, 0.97);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,28 +153,25 @@ body {
   color: var(--orange);
 }
 
-/* ----- Hero (메인 카피) ----- */
-.hero {
-  padding: 0;
-  position: static;
-}
-
+/* ----- Hero (메인 카피) - physics 제거로 위에서 처리 ----- */
 .main-title {
   margin: 0;
   font-size: clamp(1.75rem, 5vw, 2.75rem);
   font-weight: 800;
-  line-height: 1.3;
+  line-height: 1.35;
   color: var(--white);
   text-align: center;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.02em;
 }
 
 .hero-desc {
   margin: 0;
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-  color: rgba(248, 249, 250, 0.9);
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  color: var(--text);
   text-align: center;
-  max-width: 480px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ----- 서비스 / 시스템 ----- */
@@ -157,11 +186,11 @@ body {
 }
 
 .service-system .section-title.static {
-  bottom: 100px;
+  bottom: 88px;
 }
 
 .service-system .flow-copy {
-  bottom: 56px;
+  bottom: 44px;
   margin: 0;
 }
 
@@ -170,6 +199,7 @@ body {
   font-weight: 700;
   color: var(--orange);
   margin: 0 auto 1rem;
+  letter-spacing: -0.01em;
 }
 
 .flow-cards {
@@ -183,10 +213,10 @@ body {
 .service-card {
   width: 280px;
   padding: 1.5rem;
-  background: var(--navy-light);
-  border: 2px solid var(--orange);
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(145deg, var(--navy-light) 0%, var(--navy-mid) 100%);
+  border: 1px solid rgba(255, 123, 84, 0.4);
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
 }
 
 .service-card .step-num {
@@ -206,7 +236,8 @@ body {
 .service-card p {
   margin: 0;
   font-size: 0.9rem;
-  color: rgba(248, 249, 250, 0.85);
+  color: var(--text);
+  opacity: 0.9;
 }
 
 .flow-copy {
@@ -218,7 +249,7 @@ body {
 /* ----- 시공사례 갤러리 ----- */
 .gallery {
   padding: 3rem 1.5rem;
-  background: var(--navy);
+  background: linear-gradient(180deg, var(--navy-bg) 0%, var(--navy) 100%);
 }
 
 .gallery .section-title {
@@ -235,14 +266,15 @@ body {
 }
 
 .gallery-item {
-  background: var(--navy-light);
-  border-radius: 12px;
+  background: var(--navy-mid);
+  border-radius: 14px;
   overflow: hidden;
   aspect-ratio: 4 / 3;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
+  border: 1px solid rgba(255, 123, 84, 0.15);
 }
 
 .gallery-item img {
@@ -255,8 +287,8 @@ body {
 /* ----- 푸터 ----- */
 .site-footer {
   padding: 2.5rem 1.5rem;
-  background: var(--navy-light);
-  border-top: 2px solid var(--orange);
+  background: linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 100%);
+  border-top: 1px solid rgba(255, 123, 84, 0.35);
   text-align: center;
 }
 
@@ -280,12 +312,12 @@ body {
 .contact-item .label {
   display: block;
   font-size: 0.8rem;
-  color: var(--gray);
+  color: var(--text-muted);
   margin-bottom: 0.25rem;
 }
 
 .contact-item a {
-  color: var(--white);
+  color: var(--text);
   text-decoration: none;
 }
 
@@ -295,7 +327,7 @@ body {
 }
 
 .contact-item.address span:last-child {
-  color: var(--white);
+  color: var(--text);
 }
 
 .btn-kakao {
@@ -318,7 +350,7 @@ body {
 .copyright {
   margin: 0;
   font-size: 0.85rem;
-  color: var(--gray);
+  color: var(--text-muted);
 }
 
 /* ----- 섹션 공통 ----- */
